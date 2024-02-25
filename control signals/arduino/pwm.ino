@@ -1,5 +1,5 @@
 int pwmEmulatorPin = 8;
-int maxRange = 2500;
+int maxRange = 20000;
 int dutyCyclePercent = 20;
 float activeTime = 0;
 float nonActiveTime = 0;
