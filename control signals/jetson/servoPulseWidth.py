@@ -22,14 +22,21 @@ def main():
     
     print("Starting demo now! Press CTRL+C to exit")
     try:
-        
-        pulse = 0
-        angle = map_range(pulse, pulseMin, pulseMax, angleMin, angleMax);
-        print("Outputting {} to pin {}".format(angle, output_pin))
-        GPIO.output(output_pin, GPIO.HIGH)
-        time.sleep(pulse/1000000.0)
-        GPIO.output(output_pin, GPIO.LOW)
-        time.sleep((period - pulse)/1000000.0)
+        angle = angleMin
+        while angle < angleMax:
+            
+            print("Outputting {} to pin {}".format(angle, output_pin))
+            
+            pulse = map_range(angle, angleMin, angleMax, pulseMin, pulseMax);
+            GPIO.output(output_pin, GPIO.HIGH)
+            time.sleep(pulse/1000000.0)
+            GPIO.output(output_pin, GPIO.LOW)
+            time.sleep((period - pulse)/1000000.0)
+            
+            angle += 1
+            
+            if angle == angleMax:
+                angle = angleMin
 
 
     

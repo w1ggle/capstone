@@ -22,16 +22,21 @@ def main():
     
     print("Starting demo now! Press CTRL+C to exit")
     try:
-        pulse = 0
-        while pulse < pulseMax:
-            speed = map_range(pulse, pulseMin, pulseMax, speedMin, speedMax);
+        speed = speedMin
+        while speed < speedMax:
+            
             print("Outputting {} to pin {}".format(speed, output_pin))
+            
+            pulse = map_range(speed, speedMin, speedMax, pulseMin, pulseMax);
             GPIO.output(output_pin, GPIO.HIGH)
             time.sleep(pulse/1000000.0)
             GPIO.output(output_pin, GPIO.LOW)
             time.sleep((period - pulse)/1000000.0)
-            pulse += 1
-
+            
+            speed += 1
+            
+            if speed == speedMax:
+                speed = speedMin
     
     finally:
         GPIO.cleanup()
