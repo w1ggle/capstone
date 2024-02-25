@@ -1,11 +1,11 @@
 int controlPin = 8;
-int frequency = 50; //in hertz
+int frequency = 1000; //in hertz (1k to 16k?)
 int pulseMin = 500; //in microseconds
 int pulseMax = 2500; //in microseconds
-int angleMin = 0; //in degrees
-int angleMax = 270; //in degrees
+int speedMin = -100; //in degrees
+int speedMax = 100; //in degrees
 int pulse;
-int angle;
+int speed;
 int period;
 
 void setup(){
@@ -20,8 +20,8 @@ void loop(){
 
   pulse = 0;
   while(pulse < pulseMax){
-    angle = map(pulse, pulseMin, pulseMax, angleMin, angleMax);
-    //Serial.println(angle);
+    speed = map(pulse, pulseMin, pulseMax, speedMin, speedMax);
+    //Serial.println(speed);
     digitalWrite(controlPin, HIGH);
     delayMicroseconds(pulse);
     digitalWrite(controlPin, LOW);

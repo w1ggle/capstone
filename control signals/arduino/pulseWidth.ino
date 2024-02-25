@@ -19,14 +19,10 @@ void setup(){
 void loop(){
 
   pulse = 0;
-  while(pulse < pulseMax){
-    angle = map(pulse, pulseMin, pulseMax, angleMin, angleMax);
-    //Serial.println(angle);
-    digitalWrite(controlPin, HIGH);
-    delayMicroseconds(pulse);
-    digitalWrite(controlPin, LOW);
-    delayMicroseconds(period - pulse);
-    pulse++;
-  }
+
+  digitalWrite(controlPin, HIGH);
+  delayMicroseconds(pulse);
+  digitalWrite(controlPin, LOW);
+  delayMicroseconds(period - pulse);
 
 }

@@ -1,8 +1,8 @@
 int pwmEmulatorPin = 8;
 int maxRange = 20000;
 int dutyCyclePercent = 20;
-float activeTime = 0;
-float nonActiveTime = 0;
+float activeTime;
+float nonActiveTime;
 
 void setup(){
   pinMode(pwmEmulatorPin, OUTPUT);
