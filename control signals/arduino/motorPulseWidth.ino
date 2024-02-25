@@ -12,21 +12,28 @@ void setup(){
   pinMode(controlPin, OUTPUT);
   period = 1.0/frequency * 1000000; //convert to microseconds
 
-  //Serial.begin(9600);
+  Serial.begin(9600);
 }
 
 
 void loop(){
 
   pulse = 0;
-  while(pulse < pulseMax){
-    speed = map(pulse, pulseMin, pulseMax, speedMin, speedMax);
-    //Serial.println(speed);
-    digitalWrite(controlPin, HIGH);
-    delayMicroseconds(pulse);
-    digitalWrite(controlPin, LOW);
-    delayMicroseconds(period - pulse);
-    pulse++;
+
+  if(pulse < pulseMin){
+    pulse = pulseMin;
+  } else if (pulse > pulseMax){
+    pulse = pulseMax;
+  else {
+    //do nothing
   }
+  
+  speed = map(pulse, pulseMin, pulseMax, speedMin, speedMax);
+  Serial.println(speed);
+  digitalWrite(controlPin, HIGH);
+  delayMicroseconds(pulse);
+  digitalWrite(controlPin, LOW);
+  delayMicroseconds(period - pulse);
+
 
 }
