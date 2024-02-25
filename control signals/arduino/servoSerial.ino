@@ -1,6 +1,6 @@
 int controlPin = 8; //pin out
-int frequency = 200; //in hertz (40-200)
-int pulseMin = 400; //in microseconds
+int frequency = 50; //in hertz (40-200)
+int pulseMin = 500; //in microseconds
 int pulseMax = 2500; //in microseconds
 int angleMin = 0; //in degrees
 int angleMax = 180; //in degrees
@@ -13,7 +13,7 @@ void setup(){
   period = 1.0/frequency * 1000000; //convert to microseconds
 
   Serial.begin(9600);
-  Serial.println("Enter an angle (0-180):");
+  Serial.println("Enter an angle (0 to 180):");
 }
 
 

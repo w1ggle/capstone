@@ -30,7 +30,7 @@ void loop(){
 
     pulse = map(speed, speedMin, speedMax, pulseMin, pulseMax);
     
-    Serial.print("speed: ");
+    Serial.print("Speed: ");
     Serial.println(speed);
   }
 
