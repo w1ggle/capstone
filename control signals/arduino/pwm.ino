@@ -1,6 +1,6 @@
 int pwmEmulatorPin = 8;
 int maxRange = 20000;
-int dutyCyclePercent = 20;
+int dutyCyclePercent = 20; //hardcode test
 float activeTime;
 float nonActiveTime;
 
