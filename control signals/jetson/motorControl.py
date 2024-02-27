@@ -1,47 +1,30 @@
-import Jetson.GPIO as GPIO
+#import Jetson.GPIO as GPIO
 import time
+from pinControl import motorPin, map_range
 
-# Pin Definitions
-output_pin = 7 #BOARD pin 7
-
-frequency = 1000 #in hertz (1k to 16k?)
+# Definitions
+frequency = 50 #in hertz (1k to 16k?)
 pulseMin = 500 #in microseconds
 pulseMax = 2500 #in microseconds
 speedMin = -100 #in degrees
 speedMax = 100 #in degrees
+period = 1.0/frequency
+MAX_ITERATIONS = 1 #depends on hardware
+ITERATION_DELAY = 0
 
-def map_range(x, in_min, in_max, out_min, out_max):
-  return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
-
-def main():
-    # Setup:
-    GPIO.setmode(GPIO.BOARD)  #using board numbering
-    GPIO.setup(output_pin, GPIO.OUT) #set pin to output
-    period = 1.0/frequency * 1000000; #convert to microseconds
-
+def motor_control(speed):
     
-    print("Starting demo now! Press CTRL+C to exit")
-    try:
+    if(speed < speedMin): #keep input in range
         speed = speedMin
-        while speed < speedMax:
-            
-            print("Outputting {} to pin {}".format(speed, output_pin))
-            
-            pulse = map_range(speed, speedMin, speedMax, pulseMin, pulseMax);
-            GPIO.output(output_pin, GPIO.HIGH)
-            time.sleep(pulse/1000000.0)
-            GPIO.output(output_pin, GPIO.LOW)
-            time.sleep((period - pulse)/1000000.0)
-            
-            speed += 1
-            
-            if speed == speedMax:
-                speed = speedMin
+    elif (speed > speedMax):
+        speed = speedMax
+        
+    print("speed: " + str(speed))
+    pulse = map_range(speed, speedMin, speedMax, pulseMin, pulseMax) / 1000000.0 #convert to seconds
     
-    finally:
-        GPIO.cleanup()
-
-
-
-if __name__ == '__main__':
-    main()
+    for i in range(0, MAX_ITERATIONS): #setting it, may take multiple pulses, with delays in between, need to test on hardware
+        #GPIO.output(servoPin, GPIO.HIGH)
+        time.sleep(pulse)
+        #GPIO.output(servoPin, GPIO.LOW)
+        time.sleep(period - pulse)
+        time.sleep(ITERATION_DELAY)
