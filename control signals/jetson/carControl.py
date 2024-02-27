@@ -4,10 +4,9 @@ from motorControl import motor_control
 from pinControl import pin_setup, pin_clean
 
 
-#pin_setup()
+pin_setup()
 
-while True:  #polling
-    
+while True:  #polling; ctrl+C to stop
     try:  # used try so that if user pressed other than the given key error will not be shown
         if keyboard.is_pressed('w'): 
             motor_control(100)
@@ -19,5 +18,5 @@ while True:  #polling
             servo_control(100)
         
     except:
-        #pin_clean()
+        pin_clean()
         break
