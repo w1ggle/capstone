@@ -1,9 +1,9 @@
 int controlPin = 8; //pin out
-int frequency = 1000; //in hertz (1k to 16k?)
+int frequency = 16000; //in hertz (1k to 16k?)
 int pulseMin = 500; //in microseconds
 int pulseMax = 2500; //in microseconds
-int speedMin = -100; //in degrees
-int speedMax = 100; //in degrees
+int speedMin = -100; //in magnitude 
+int speedMax = 100; //in magnitude
 int pulse;
 int speed;
 int period;
@@ -32,10 +32,13 @@ void loop(){
     
     Serial.print("Speed: ");
     Serial.println(speed);
-  }
 
     digitalWrite(controlPin, HIGH);
     delayMicroseconds(pulse);
     digitalWrite(controlPin, LOW);
     delayMicroseconds(period - pulse);
+    
+  }
+
+    
 }

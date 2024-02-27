@@ -3,10 +3,10 @@ int frequency = 50; //in hertz (40-200)
 int pulseMin = 1200; //in microseconds
 int pulseMax = 1610; //in microseconds
 int pulseStraight = 1374;
-int angleMin = 0; //in degrees
-int angleMax = 56; //in degrees
-int MAX_ITERATIONS = 4; //depends on hardware
-int ITERATION_DELAY = 5; //depends on hardware
+int angleMin = -100; //in degrees
+int angleMax = 100; //in degrees (56 is max)
+int MAX_ITERATIONS = 1; //depends on hardware
+int ITERATION_DELAY = 0; //depends on hardware
 int pulse;
 int angle;
 int period;
@@ -16,7 +16,7 @@ void setup(){
   period = 1.0/frequency * 1000000; //convert to microseconds
 
   Serial.begin(9600);
-  Serial.println("Enter an angle (0 to 180):"); //open serial and prompt user
+  Serial.println("Enter an angle (-100 to 100):"); //open serial and prompt user
 }
 
 
@@ -37,10 +37,11 @@ void loop(){
     Serial.println(pulse);
 
     pulse = map(angle, angleMin, angleMax, pulseMin, pulseMax); //mapping input to pulse
-   // if (angle == ((angleMin + angleMax)/2)){
-     // pulse = pulseStraight;
+    //if (angle == ((angleMin + angleMax)/2)){ //straight? wondering if i should recalibrate now that i think about it
+    //    pulse = pulseStraight;
     //}
-    for(int i = 0; i < MAX_ITERATIONS; i++){ //setting it, may take multiple pulses, with delays in between
+
+    for(int i = 0; i < MAX_ITERATIONS; i++){ //setting it, may take multiple pulses, with delays in between, need to test on hardware
       Serial.println(pulse);
       digitalWrite(controlPin, HIGH);
       delayMicroseconds(pulse);
