@@ -1,13 +1,13 @@
 int controlPin = 8; //pin out
 int frequency = 50; //in hertz (40-200)
-int pulseMin = 1200; //in microseconds
-int pulseMax = 1610; //in microseconds
-int angleMin = -100; //in degrees
-int angleMax = 100; //in degrees (56 is max)
+int pulseMin = 500; //in microseconds
+int pulseMax = 2500; //in microseconds
+int speedMin = -100; //in degrees
+int speedMax = 100; //in degrees (56 is max)
 int MAX_ITERATIONS = 1; //depends on hardware
 int ITERATION_DELAY = 0; //depends on hardware
 int pulse;
-int angle;
+int speed;
 int period;
 
 void setup(){
@@ -15,27 +15,27 @@ void setup(){
   period = 1.0/frequency * 1000000; //convert to microseconds
 
   Serial.begin(9600);
-  Serial.println("Enter an angle (-100 to 100):"); //open serial and prompt user
+  Serial.println("Enter an speed (-100 to 100):"); //open serial and prompt user
 }
 
 
 void loop(){
 
   if (Serial.available() > 0) { //if data is inputted
-    angle = Serial.parseInt(); //get number
+    speed = Serial.parseInt(); //get number
 
-    if(angle < angleMin){ //keep input in range
-      angle = angleMin;
-    } else if (angle > angleMax){
-      angle = angleMax;
+    if(speed < speedMin){ //keep input in range
+      speed = speedMin;
+    } else if (speed > speedMax){
+      speed = speedMax;
     }
 
-    Serial.print("Angle: "); //print back input
-    Serial.println(angle);
+    Serial.print("speed: "); //print back input
+    Serial.println(speed);
     Serial.print("pulse: "); //print back input
     Serial.println(pulse);
 
-    pulse = map(angle, angleMin, angleMax, pulseMin, pulseMax); //mapping input to pulse
+    pulse = map(speed, speedMin, speedMax, pulseMin, pulseMax); //mapping input to pulse
 
     for(int i = 0; i < MAX_ITERATIONS; i++){ //setting it, may take multiple pulses, with delays in between, need to test on hardware
       Serial.println(pulse);
