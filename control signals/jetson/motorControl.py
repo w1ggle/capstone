@@ -23,8 +23,8 @@ def motor_control(speed):
     pulse = map_range(speed, speedMin, speedMax, pulseMin, pulseMax) / 1000000.0 #convert to seconds
     
     for i in range(0, MAX_ITERATIONS): #setting it, may take multiple pulses, with delays in between, need to test on hardware
-        #GPIO.output(servoPin, GPIO.HIGH)
+        #GPIO.output(motorPin, GPIO.HIGH)
         time.sleep(pulse)
-        #GPIO.output(servoPin, GPIO.LOW)
+        #GPIO.output(motorPin, GPIO.LOW)
         time.sleep(period - pulse)
         time.sleep(ITERATION_DELAY)

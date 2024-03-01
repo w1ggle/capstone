@@ -1,5 +1,5 @@
 int controlPin = 8; //pin out
-int frequency = 16000; //in hertz (1k to 16k?)
+int frequency = 50; //in hertz (1k to 16k?)
 int pulseMin = 500; //in microseconds
 int pulseMax = 2500; //in microseconds
 int speedMin = -100; //in magnitude 
