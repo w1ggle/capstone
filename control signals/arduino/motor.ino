@@ -1,7 +1,7 @@
 int controlPin = 8; //pin out
 int frequency = 50; //in hertz (40-200)
-int pulseMin = 500; //in microseconds
-int pulseMax = 2500; //in microseconds
+int pulseMin = 725; //in microseconds
+int pulseMax = 2125; //in microseconds
 int speedMin = -100; //in degrees
 int speedMax = 100; //in degrees (56 is max)
 int MAX_ITERATIONS = 1; //depends on hardware
@@ -13,6 +13,18 @@ int period;
 void setup(){
   pinMode(controlPin, OUTPUT); //set GPIO out
   period = 1.0/frequency * 1000000; //convert to microseconds
+
+
+  
+  for(int i = 0; i < 100; i++){ //calibrating motor center
+    Serial.println(1500);
+    digitalWrite(controlPin, HIGH);
+    delayMicroseconds(pulse);
+    digitalWrite(controlPin, LOW);
+    delayMicroseconds(period - 1500);
+    delay(2);
+
+  }
 
   Serial.begin(9600);
   Serial.println("Enter an speed (-100 to 100):"); //open serial and prompt user

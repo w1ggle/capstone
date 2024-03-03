@@ -1,9 +1,9 @@
 int controlPin = 8; //pin out
 int frequency = 50; //in hertz (40-200)
-int pulseMin = 1200; //in microseconds
-int pulseMax = 1610; //in microseconds
+int pulseMin = 1190; //in microseconds
+int pulseMax = 1620; //in microseconds
 int angleMin = -100; //in degrees
-int angleMax = 100; //in degrees (56 is max)
+int angleMax = 100; //in degrees
 int MAX_ITERATIONS = 1; //depends on hardware
 int ITERATION_DELAY = 0; //depends on hardware
 int pulse;
