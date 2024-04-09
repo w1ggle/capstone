@@ -14,8 +14,8 @@ def pin_clean():
     #GPIO.cleanup()
     return
     
-def map_range(x, in_min, in_max, out_min, out_max):
-    return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
+#def map_range(x, in_min, in_max, out_min, out_max):
+#    return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
 
 def usleep(x):
     return time.sleep(x/1000000.0)

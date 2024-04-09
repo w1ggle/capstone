@@ -9,7 +9,7 @@ pulseMax = 2125 #in microseconds
 deadband = 3
 
 MAX_ITERATIONS = 1 #depends on hardware
-    
+
 def motor_control(pulse):
     
     if(pulse < pulseMin): #keep input in range
@@ -25,3 +25,9 @@ def motor_control(pulse):
         usleep(pulse)
         #GPIO.output(servoPin, GPIO.LOW)
         usleep((period - pulse) + deadband)
+        
+        
+calibrateNEEDED = 100
+def motor_calibration():
+    for i in range(0,calibrateNEEDED):
+        motor_control(1500)

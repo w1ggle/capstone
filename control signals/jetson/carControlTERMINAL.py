@@ -1,6 +1,6 @@
-#import keyboard
+import keyboard
 from servoControlPULSE import servo_control
-#from motorControl import motor_control
+from motorControlPULSE import motor_control
 from pinControl import pin_setup, pin_clean
 
 
