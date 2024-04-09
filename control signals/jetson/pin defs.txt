@@ -1,0 +1,29 @@
+JETSON_TX2_PIN_DEFS = [
+    (76, 'PJ.04', "tegra-gpio", 7, 4, 'PAUDIO_MCLK', 'AUD_MCLK', None, None),
+    # Output-only (due to base board)
+    (146, 'PT.02', "tegra-gpio", 11, 17, 'PUART0_RTS', 'UART1_RTS', None, None),
+    (72, 'PJ.00', "tegra-gpio", 12, 18, 'PI2S0_CLK', 'DAP1_SCLK', None, None),
+    (77, 'PJ.05', "tegra-gpio", 13, 27, 'PGPIO20_AUD_INT', 'GPIO_AUD0', None, None),
+    (15, 'GPIO_EXP_P16', "tca9539", 15, 22, 'GPIO_EXP_P17', 'GPIO_EXP_P17', None, None),
+    # Input-only (due to module):
+    (40,  'PAA.00', "tegra-gpio-aon", 16, 23, 'AO_DMIC_IN_DAT', 'CAN_GPIO0', None, None),
+    (161, 'PY.01', "tegra-gpio", 18, 24, 'GPIO16_MDM_WAKE_AP', 'GPIO_MDM2', None, None),
+    (109, 'PN.05', "tegra-gpio", 19, 10, 'SPI1_MOSI', 'GPIO_CAM6', None, None),
+    (108, 'PN.04', "tegra-gpio", 21, 9, 'SPI1_MISO', 'GPIO_CAM5', None, None),
+    (14,  'GPIO_EXP_P16', "tca9539", 22, 25, 'GPIO_EXP_P16', 'GPIO_EXP_P16', None, None),
+    (107, 'PN.03', "tegra-gpio", 23, 11, 'SPI1_CLK', 'GPIO_CAM4', None, None),
+    (110, 'PN.06', "tegra-gpio", 24, 8, 'SPI1_CS0', 'GPIO_CAM7', None, None),
+    # Board pin 26 is not available on this board
+    (78, 'PJ.06', "tegra-gpio", 29, 5, 'GPIO19_AUD_RST', 'GPIO_AUD1', None, None),
+    (42, 'PAA.02', "tegra-gpio-aon", 31, 6, 'GPIO9_MOTION_INT', 'CAN_GPIO2', None, None),
+    # Output-only (due to module):
+    (41, 'PAA.01', "tegra-gpio-aon", 32, 12, 'AO_DMIC_IN_CLK', 'CAN_GPIO1', None, None),
+    (69, 'PI.05', "tegra-gpio", 33, 13, 'GPIO11_AP_WAKE_BT', 'GPIO_PQ5', None, None),
+    (75, 'PJ.03', "tegra-gpio", 35, 19, 'I2S0_LRCLK', 'DAP1_FS', None, None),
+    # Input-only (due to base board) IF NVIDIA debug card NOT plugged in
+    # Output-only (due to base board) IF NVIDIA debug card plugged in
+    (147, 'PT.03', "tegra-gpio", 36, 16, 'UART0_CTS', 'UART1_CTS', None, None),
+    (68, 'PI.04', "tegra-gpio", 37, 26, 'GPIO8_ALS_PROX_INT', 'GPIO_PQ4', None, None),
+    (74, 'PJ.02', "tegra-gpio", 38, 20, 'I2S0_SDIN', 'DAP1_DIN', None, None),
+    (73, 'PJ.01', "tegra-gpio", 40, 21, 'I2S0_SDOUT', 'DAP1_DOUT', None, None)
+]

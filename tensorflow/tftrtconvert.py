@@ -1,5 +1,5 @@
 
-GPUmem = 8000000000
+GPUmem = 7000000000
 tfGPUMem = .50
 gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction = tfGPUMem)
 
@@ -14,3 +14,9 @@ trt_graph = trt.create_inference_graph(
                 max_batch_size=batch_size,
                 max_workspace_size_bytes=workspace_size,
                 precision_mode="FP16")
+
+
+tf.io.write_graph(graph_or_graph_def=trt_graph.graph,
+                      logdir="./frozen_models",
+                      name="simple_frozen_graph.pb",
+                      as_text=False)
