@@ -8,7 +8,7 @@ pulseMin = 725 #in microseconds
 pulseMax = 2125 #in microseconds
 deadband = 3
 
-MAX_ITERATIONS = 1 #depends on hardware
+MAX_ITERATIONS = 1 #depends on hardware looking ~200 = 0.5 seconds
 
 def motor_control(pulse):
     
