@@ -15,23 +15,8 @@ void setup(){
   steering.attach(steeringPin); //attaching the pins to objects
   motor.attach(motorPin);
 
-  steering.writeMicroseconds(1500); //centering servo
-
-  for(int i = 0; i < 100; i++){ //calibrating motor, send center, max, min (2 secs each)
-    motor.writeMicroseconds(1500); 
-    delayMicroseconds(period-1500);
-  }
-  for(int i = 0; i < 100; i++){ 
-    motor.writeMicroseconds(500); 
-    delayMicroseconds(period-500);
-  }
-  for(int i = 0; i < 100; i++){ 
-    motor.writeMicroseconds(2500); 
-    delayMicroseconds(period-2500);
-  }
-
-    Serial.begin(9600);
-    Serial.println("Listening"); //open serial port
+  Serial.begin(9600);
+  //Serial.println("Listening"); //open serial port for debugging, not expecting feedback
 }
 
 int selection;
@@ -45,7 +30,7 @@ void loop(){
 
     switch (selection) { 
         case 1: //steering
-            servo.writeMicroseconds(pulse); 
+            steering.writeMicroseconds(pulse); 
             break;
         case 2: //motor
             for(int i = 0; i < 100; i++){ 
@@ -53,6 +38,20 @@ void loop(){
                 delayMicroseconds(period-pulse);
             }
             break;
+        case 3: //calibrate
+            steering.writeMicroseconds(1500); //centering servo
+            for(int i = 0; i < 100; i++){ //calibrating motor, send center, max, min (2 secs each)
+                motor.writeMicroseconds(1500); 
+                delayMicroseconds(period-1500);
+            }
+            for(int i = 0; i < 100; i++){ 
+                motor.writeMicroseconds(500); 
+                delayMicroseconds(period-500);
+            }
+            for(int i = 0; i < 100; i++){ 
+                motor.writeMicroseconds(2500); 
+                delayMicroseconds(period-2500);
+            }
         default: //do nothing
             break;
         }
