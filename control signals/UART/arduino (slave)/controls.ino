@@ -12,51 +12,47 @@ Servo motor;
 #define motorMax 0
 
 void setup(){
-  steering.attach(steeringPin); //attaching the pins to objects
-  motor.attach(motorPin);
+    steering.attach(steeringPin); //attaching the pins to objects
+    motor.attach(motorPin);
 
-  Serial.begin(9600);
-  //Serial.println("Listening"); //open serial port for debugging, not expecting feedback
+    Serial.begin(9600);
+    //Serial.println("Listening"); //open serial port for debugging, not expecting feedback
 }
 
 int selection;
 int pulse;
 
 void loop(){
+    if (Serial.available() > 0) { //if data is inputted
+        selection = Serial.readStringUntil(' ').toInt(); //first is selection
+        pulse = Serial.readStringUntil(' ').toInt(); //second is pulse (need to end with a space, or else slow bc timeout)
 
-  if (Serial.available() > 0) { //if data is inputted
-    selection = Serial.readStringUntil(' ').toInt(); //first is selection
-    pulse = Serial.readStringUntil(' ').toInt(); //second is pulse (need to end with a space, or else slow bc timeout)
-
-    switch (selection) { 
-        case 1: //steering
-            steering.writeMicroseconds(pulse); 
-            break;
-        case 2: //motor
-            for(int i = 0; i < 100; i++){ 
-                motor.writeMicroseconds(pulse); 
-                delayMicroseconds(period-pulse);
-            }
-            break;
-        case 3: //calibrate
-            steering.writeMicroseconds(1500); //centering servo
-            for(int i = 0; i < 100; i++){ //calibrating motor, send center, max, min (2 secs each)
-                motor.writeMicroseconds(1500); 
-                delayMicroseconds(period-1500);
-            }
-            for(int i = 0; i < 100; i++){ 
-                motor.writeMicroseconds(500); 
-                delayMicroseconds(period-500);
-            }
-            for(int i = 0; i < 100; i++){ 
-                motor.writeMicroseconds(2500); 
-                delayMicroseconds(period-2500);
-            }
-        default: //do nothing
-            break;
-        }
-
-   
-  }
-
+        switch (selection) { 
+            case 1: //steering
+                steering.writeMicroseconds(pulse); 
+                break;
+            case 2: //motor
+                for(int i = 0; i < 100; i++){  //100 iteraions ~= 0.5 secs run time
+                    motor.writeMicroseconds(pulse); 
+                    delayMicroseconds(period-pulse);
+                }
+                break;
+            case 3: //calibrate
+                steering.writeMicroseconds(1500); //centering servo
+                for(int i = 0; i < 100; i++){ //calibrating motor, send center, max, min (2 secs each)
+                    motor.writeMicroseconds(1500); 
+                    delayMicroseconds(period-1500);
+                }
+                for(int i = 0; i < 100; i++){ 
+                    motor.writeMicroseconds(500); 
+                    delayMicroseconds(period-500);
+                }
+                for(int i = 0; i < 100; i++){ 
+                    motor.writeMicroseconds(2500); 
+                    delayMicroseconds(period-2500);
+                }
+            default: //do nothing
+                break;
+        }  
+    }
 }
