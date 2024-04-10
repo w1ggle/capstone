@@ -41,18 +41,20 @@ void loop(){
 
   if (Serial.available() > 0) { //if data is inputted
     selection = Serial.readStringUntil(' ').toInt();
-    pulse = Serial.readStringUntil(' ').toInt();
-    //selection = Serial.parseInt();
-    //pulse = Serial.parseInt();
-    
-    
-    //speed = Serial.parseInt(); //get number
+    pulse = Serial.readStringUntil(' ').toInt(); 
 
-    Serial.print("speed: "); //print back input
-    Serial.println(selection);
-    Serial.print("pulse: "); //print back input
-    Serial.println(pulse);
-    Serial.println(selection + pulse);
+    switch (selection) {
+        case 1:
+            Serial.print("Steering: "); //print back input
+            Serial.println(pulse);
+            break;
+        case 2:
+            Serial.print("Motor: "); //print back input
+            Serial.println(pulse);
+            break;
+        default:
+            break;
+        }
 
    
   }
