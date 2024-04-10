@@ -4,9 +4,9 @@ from pinControl import motorPin, usleep
 # Definitions
 frequency = 50 #in hertz (50 to 200?)
 period = (1.0 / frequency) * 1000000.0 #convert to microseconds
-pulseMin = 725 #in microseconds
-pulseMax = 2125 #in microseconds
-deadband = 3
+pulseMin = 500 #725 #in microseconds
+pulseMax = 2500 #2125 #in microseconds
+deadband = 0
 
 MAX_ITERATIONS = 1 #depends on hardware looking ~200 = 0.5 seconds
 
@@ -31,3 +31,7 @@ calibrateNEEDED = 100
 def motor_calibration():
     for i in range(0,calibrateNEEDED):
         motor_control(1500)
+    for i in range(0,calibrateNEEDED):
+        motor_control(2500)
+    for i in range(0,calibrateNEEDED):
+        motor_control(500)
