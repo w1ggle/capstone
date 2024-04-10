@@ -3,38 +3,38 @@
 Servo steering;
 Servo motor;
 
-#define steeringPin 8
-#define motorPin 8
-#define period 20000
-
-int MAX_ITERATIONS = 100; //depends on hardware
-int ITERATION_DELAY = 0; //depends on hardware
+#define steeringPin 11
+#define motorPin 10
+#define period 20000 
+#define steeringMin 0
+#define steeringMax 0
+#define motorMin 0
+#define motorMax 0
+#define MAX_ITERATIONS = 100; 
+#define ITERATION_DELAY = 0;
 
 
 void setup(){
   steering.attach(steeringPin);
   motor.attach(motorPin);
 
+  steering.writeMicroseconds(1500); //centering
 
-
-  myservo.writeMicroseconds(1500);
-
-  
-  
-
-  Serial.begin(9600);
-  Serial.println("Enter an speed (-100 to 100):"); //open serial and prompt user
-
-  for(int i = 0; i < 400; i++){ //calibrating motor center
-    Serial.println(1500);
-    digitalWrite(controlPin, HIGH);
-    delayMicroseconds(pulse);
-    digitalWrite(controlPin, LOW);
-    delayMicroseconds(period - 1500);
-    delay(3);
-    Serial.println("iteration");
-
+  for(int i = 0; i < 100; i++){ //calibrating motor center
+    motor.writeMicroseconds(1500); 
+    delayMicroseconds(period-1500);
   }
+  for(int i = 0; i < 100; i++){ //calibrating motor center
+    motor.writeMicroseconds(500); //centering
+    delayMicroseconds(period-500);
+  }
+  for(int i = 0; i < 100; i++){ //calibrating motor center
+    motor.writeMicroseconds(2500); //centering
+    delayMicroseconds(period-2500);
+  }
+
+    Serial.begin(9600);
+    Serial.println("Listening"); //open serial and prompt user
 }
 
 
