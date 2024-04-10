@@ -10,9 +10,6 @@ Servo motor;
 #define steeringMax 0
 #define motorMin 0
 #define motorMax 0
-#define MAX_ITERATIONS = 100; 
-#define ITERATION_DELAY = 0;
-
 
 void setup(){
   steering.attach(steeringPin);
@@ -37,34 +34,27 @@ void setup(){
     Serial.println("Listening"); //open serial and prompt user
 }
 
+int selection;
+int pulse;
 
 void loop(){
 
   if (Serial.available() > 0) { //if data is inputted
-    speed = Serial.parseInt(); //get number
-
-    if(speed < speedMin){ //keep input in range
-      speed = speedMin;
-    } else if (speed > speedMax){
-      speed = speedMax;
-    }
+    selection = Serial.readStringUntil(' ').toInt();
+    pulse = Serial.readStringUntil(' ').toInt();
+    //selection = Serial.parseInt();
+    //pulse = Serial.parseInt();
+    
+    
+    //speed = Serial.parseInt(); //get number
 
     Serial.print("speed: "); //print back input
-    Serial.println(speed);
+    Serial.println(selection);
     Serial.print("pulse: "); //print back input
     Serial.println(pulse);
+    Serial.println(selection + pulse);
 
-    pulse = map(speed, speedMin, speedMax, pulseMin, pulseMax); //mapping input to pulse
-
-    for(int i = 0; i < MAX_ITERATIONS; i++){ //setting it, may take multiple pulses, with delays in between, need to test on hardware
-      Serial.println(pulse);
-      digitalWrite(controlPin, HIGH);
-      delayMicroseconds(pulse);
-      digitalWrite(controlPin, LOW);
-      delayMicroseconds(period - pulse);
-      delay(ITERATION_DELAY);
-
-    }
+   
   }
 
 }
