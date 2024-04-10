@@ -1,37 +1,37 @@
 #include "Servo.h"
 
-Servo steering;
+Servo steering; //creating servo objects
 Servo motor;
 
-#define steeringPin 11
+#define steeringPin 11 //setting pins (hardware PWM)
 #define motorPin 10
-#define period 20000 
-#define steeringMin 0
+#define period 20000 //50hz in microseconds
+#define steeringMin 0 //need to figure out min and maxes
 #define steeringMax 0
 #define motorMin 0
 #define motorMax 0
 
 void setup(){
-  steering.attach(steeringPin);
+  steering.attach(steeringPin); //attaching the pins to objects
   motor.attach(motorPin);
 
-  steering.writeMicroseconds(1500); //centering
+  steering.writeMicroseconds(1500); //centering servo
 
-  for(int i = 0; i < 100; i++){ //calibrating motor center
+  for(int i = 0; i < 100; i++){ //calibrating motor, send center, max, min (2 secs each)
     motor.writeMicroseconds(1500); 
     delayMicroseconds(period-1500);
   }
-  for(int i = 0; i < 100; i++){ //calibrating motor center
-    motor.writeMicroseconds(500); //centering
+  for(int i = 0; i < 100; i++){ 
+    motor.writeMicroseconds(500); 
     delayMicroseconds(period-500);
   }
-  for(int i = 0; i < 100; i++){ //calibrating motor center
-    motor.writeMicroseconds(2500); //centering
+  for(int i = 0; i < 100; i++){ 
+    motor.writeMicroseconds(2500); 
     delayMicroseconds(period-2500);
   }
 
     Serial.begin(9600);
-    Serial.println("Listening"); //open serial and prompt user
+    Serial.println("Listening"); //open serial port
 }
 
 int selection;
@@ -40,19 +40,20 @@ int pulse;
 void loop(){
 
   if (Serial.available() > 0) { //if data is inputted
-    selection = Serial.readStringUntil(' ').toInt();
-    pulse = Serial.readStringUntil(' ').toInt(); 
+    selection = Serial.readStringUntil(' ').toInt(); //first is selection
+    pulse = Serial.readStringUntil(' ').toInt(); //second is pulse (need to end with a space, or else slow bc timeout)
 
-    switch (selection) {
-        case 1:
-            Serial.print("Steering: "); //print back input
-            Serial.println(pulse);
+    switch (selection) { 
+        case 1: //steering
+            servo.writeMicroseconds(pulse); 
             break;
-        case 2:
-            Serial.print("Motor: "); //print back input
-            Serial.println(pulse);
+        case 2: //motor
+            for(int i = 0; i < 100; i++){ 
+                motor.writeMicroseconds(pulse); 
+                delayMicroseconds(period-pulse);
+            }
             break;
-        default:
+        default: //do nothing
             break;
         }
 
