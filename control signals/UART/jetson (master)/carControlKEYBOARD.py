@@ -2,7 +2,6 @@
 import keyboard
 import arduinoControl as ac
 
-pin_setup()
 
 while True:  #polling; ctrl+C to stop
 
@@ -15,6 +14,10 @@ while True:  #polling; ctrl+C to stop
             ac.left()
         elif keyboard.is_pressed('d'):
             ac.right()
-        
+        else:
+            ac.send_command(1, 1500)
+            ac.send_command(2, 1500)
+    
     except:
+        print("leaving")
         break
