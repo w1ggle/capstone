@@ -5,18 +5,20 @@ Servo motor;
 
 #define steeringPin 11 //setting pins (hardware PWM)
 #define motorPin 10
-#define steeringMin 1190 //min and maxes
+#define steeringMin 1200 //min and maxes
 #define steeringMax 1620
+#define middle 1430
 #define motorMin 750
 #define motorMax 2100
+
 
 void setup(){
     steering.attach(steeringPin, steeringMin , steeringMax); //attaching updating objects
     motor.attach(motorPin, motorMin, motorMax);
 
-    steering.writeMicroseconds(1500); //centering steering
+    steering.writeMicroseconds(middle); //centering steering
 
-    Serial.begin(9600); //idk if i need 1 or nothing here. ill try 1 next time
+    Serial.begin(9600);
 }
 
 int selection;
