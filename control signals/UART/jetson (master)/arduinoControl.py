@@ -11,5 +11,15 @@ serial_port = serial.Serial(
 def send_command(selection, pulse):
     serial_port.write("{} {} ".format(selection,pulse).encode()) #do i need encode?
 
-def forward(pulse):
-    send_command(2, pulse)
+#everything below should be 50% to its max
+def forward():
+    send_command(2, 1725)
+    
+def back():
+    send_command(2, 1237)
+    
+def left():
+    send_command(1, 1298)
+    
+def right():
+    send_command(1, 1513)
