@@ -10,3 +10,6 @@ serial_port = serial.Serial(
 
 def send_command(selection, pulse):
     serial_port.write("{} {} ".format(selection,pulse).encode()) #do i need encode?
+
+def forward(pulse):
+    send_command(2, pulse)

@@ -8,7 +8,7 @@ Servo motor;
 #define steeringMin 1190 //min and maxes
 #define steeringMax 1620
 #define motorMin 750
-#define motorMax 2150
+#define motorMax 2100
 
 void setup(){
     steering.attach(steeringPin, steeringMin , steeringMax); //attaching updating objects
@@ -16,7 +16,7 @@ void setup(){
 
     steering.writeMicroseconds(1500); //centering steering
 
-    Serial.begin(9600);
+    Serial1.begin(9600); //idk if i need 1 or nothing here. ill try 1 next time
 }
 
 int selection;
