@@ -16,7 +16,7 @@ void setup(){
 
     steering.writeMicroseconds(1500); //centering steering
 
-    Serial1.begin(9600); //idk if i need 1 or nothing here. ill try 1 next time
+    Serial.begin(9600); //idk if i need 1 or nothing here. ill try 1 next time
 }
 
 int selection;

@@ -12,6 +12,7 @@ cd h5py
 git checkout 3.1.0
 git config user.email "you@example.com"
 git config user.name "Your Name"
+git stash
 git cherry-pick 3bf862daa4ebeb2eeaf3a0491e05f5415c1818e4 #idk if u need this
 H5PY_SETUP_REQUIRES=0 pip3 install . --no-deps --no-build-isolation
 H5PY_SETUP_REQUIRES=0 python3 setup.py bdist_wheel
