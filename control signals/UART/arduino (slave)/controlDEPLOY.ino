@@ -1,31 +1,29 @@
 #include "Servo.h"
 
-Servo steering; //creating servo objects
+Servo steering; //initializing servo objects
 Servo motor;
 
 #define steeringPin 11 //setting pins (hardware PWM)
 #define motorPin 10
-//#define period 20000 //50hz in microseconds
-#define steeringMin 1190 //need to figure out min and maxes
+#define steeringMin 1190 //min and maxes
 #define steeringMax 1620
 #define motorMin 750
 #define motorMax 2150
 
 void setup(){
-    steering.attach(steeringPin, steeringMin , steeringMax); //attaching the pins to objects
+    steering.attach(steeringPin, steeringMin , steeringMax); //attaching updating objects
     motor.attach(motorPin, motorMin, motorMax);
 
-    steering.writeMicroseconds(1500); //centering servo
+    steering.writeMicroseconds(1500); //centering steering
 
     Serial.begin(9600);
-    //Serial.println("Listening"); //open serial port for debugging, not expecting feedback
 }
 
 int selection;
 int pulse;
 
 void loop(){
-    if (Serial.available() > 0) { //if data is inputted
+    if (Serial.available() > 0) { //if data is received (in format of "num1 num2 ")
         selection = Serial.readStringUntil(' ').toInt(); //first is selection
         pulse = Serial.readStringUntil(' ').toInt(); //second is pulse (need to end with a space, or else slow bc timeout)
 
