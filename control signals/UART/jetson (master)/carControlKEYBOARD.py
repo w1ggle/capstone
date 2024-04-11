@@ -14,7 +14,7 @@ while True:  #polling; ctrl+C to stop
             ac.left()
         elif keyboard.is_pressed('d'):
             ac.right()
-        else:
+        elif keyboard.is_pressed('r'):
             ac.send_command(2, 1500)
             ac.send_command(1, 1500)
     except:
