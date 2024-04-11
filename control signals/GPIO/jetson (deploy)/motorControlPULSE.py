@@ -1,14 +1,16 @@
-#import Jetson.GPIO as GPIO
+#!/usr/bin/env python3
+import Jetson.GPIO as GPIO
 from pinControl import motorPin, usleep
 
 # Definitions
-frequency = 50 #in hertz (50 to 200?)
-period = (1.0 / frequency) * 1000000.0 #convert to microseconds
-pulseMin = 500 #725 #in microseconds
-pulseMax = 2500 #2125 #in microseconds
-deadband = 0
+#frequency = 50 #in hertz (50 to 200?)
+#period = (1.0 / frequency) * 1000000.0 #convert to microseconds
+period = 20000 #in microseconds
+pulseMin = 725 #in microseconds
+pulseMax = 2125 #in microseconds
+deadband = 3
 
-MAX_ITERATIONS = 1 #depends on hardware looking ~200 = 0.5 seconds
+MAX_ITERATIONS = 200 #depends on hardware looking ~200 = 0.5 seconds
 
 def motor_control(pulse):
     
@@ -21,17 +23,13 @@ def motor_control(pulse):
     #pulse = map_range(angle, angleMin, angleMax, pulseMin, pulseMax) / 1000000.0 #convert to seconds
     
     for i in range(0, MAX_ITERATIONS): #setting it, may take multiple pulses, with delays in between, need to test on hardware
-        #GPIO.output(servoPin, GPIO.HIGH)
+        GPIO.output(motorPin, GPIO.HIGH)
         usleep(pulse)
-        #GPIO.output(servoPin, GPIO.LOW)
+        GPIO.output(motorPin, GPIO.LOW)
         usleep((period - pulse) + deadband)
         
         
-calibrateNEEDED = 100
+calibrateNEEDED = 500
 def motor_calibration():
     for i in range(0,calibrateNEEDED):
         motor_control(1500)
-    for i in range(0,calibrateNEEDED):
-        motor_control(2500)
-    for i in range(0,calibrateNEEDED):
-        motor_control(500)
