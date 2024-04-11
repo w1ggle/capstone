@@ -1,4 +1,7 @@
 
+#https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html April 18, 2018
+# https://developer.nvidia.com/blog/tensorrt-integration-speeds-tensorflow-inference/ 
+
 GPUmem = 7000000000
 tfGPUMem = .50
 gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction = tfGPUMem)
