@@ -30,8 +30,10 @@ def right():
 def straight():
     send_command(1, 1430)
     
-def finished():
+def finish():
     stop()
+    left()
+    right()
     left()
     right()
     straight()
