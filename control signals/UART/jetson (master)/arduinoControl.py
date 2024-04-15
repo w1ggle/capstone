@@ -18,8 +18,21 @@ def forward():
 def back():
     send_command(2, 1237)
     
+def stop():
+    send_command(2, 1500)
+    
 def left():
     send_command(1, 1298)
     
 def right():
     send_command(1, 1513)
+
+def straight():
+    send_command(1, 1430)
+    
+def finished():
+    stop()
+    left()
+    right()
+    straight()
+    return True
