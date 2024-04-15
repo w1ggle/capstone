@@ -20,7 +20,8 @@ while PARKED is not True:
     #run the model on on the avm output
     #labeledSurround = model.run(surround)
     
-
+    #can uncommment this movement (will wiggle steering) to test if session stays active after mulitple wile loop iterations
+    #ac.finish()
     
     #run the movement commands
     # PARKED = mp.movement(labeledSurround) #move forward, back left right etc. return true if parked at right spot
