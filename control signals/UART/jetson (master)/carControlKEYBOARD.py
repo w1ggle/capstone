@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import keyboard
-import arduinoControl as ac
+from modules import arduinoControl as ac
 
 
 while True:  #polling; ctrl+C to stop

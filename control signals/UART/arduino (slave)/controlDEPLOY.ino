@@ -5,11 +5,11 @@ Servo motor;
 
 #define steeringPin 11 //setting pins (hardware PWM)
 #define motorPin 10
-#define steeringMin 1200 //min and maxes
-#define steeringMax 1620
-#define middle 1430
-#define motorMin 750
-#define motorMax 2100
+#define steeringMin 1190 //left
+#define steeringMax 1620 //right
+#define middle 1420
+#define motorMin 750 //back
+#define motorMax 2100 //forward
 
 
 void setup(){
@@ -18,7 +18,7 @@ void setup(){
 
     steering.writeMicroseconds(middle); //centering steering
 
-    Serial.begin(9600);
+    Serial.begin(115200);// 115200);
 }
 
 int selection;
