@@ -22,13 +22,13 @@ def stop():
     send_command(2, 1500)
     
 def left():
-    send_command(1, 1190) #full sends on the bottom
+    send_command(1, 1260) #full sends on the bottom
     
 def right():
-    send_command(1, 1620)
+    send_command(1, 1710)
 
 def straight():
-    send_command(1, 1430)
+    send_command(1, 1500)
     
 def finish():
     stop()

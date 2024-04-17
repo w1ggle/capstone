@@ -5,9 +5,9 @@ Servo motor;
 
 #define steeringPin 11 //setting pins (hardware PWM)
 #define motorPin 10
-#define steeringMin 1190 //left
-#define steeringMax 1620 //right
-#define middle 1420
+#define steeringMin 1260 //1190 //left //1090
+#define steeringMax 1710 //1620 //right //1750
+#define middle 1500 //1370 //1420
 #define motorMin 750 //back
 #define motorMax 2100 //forward
 
