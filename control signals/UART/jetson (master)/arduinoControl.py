@@ -13,10 +13,10 @@ def send_command(selection, pulse):
 
 #everything below should be 2% to its max
 def forward():
-    send_command(2, 1725)
+    send_command(2, 1725) #1630
     
 def back():
-    send_command(2, 1237)
+    send_command(2, 1237) #1365
     
 def stop():
     send_command(2, 1500)
