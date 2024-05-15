@@ -2,7 +2,7 @@ import keyboard
 #from modules import arduinoControl as ac
 
 #interrupts
-keyboard.on_press_key('space', lambda x: print("siren"))
+#keyboard.on_press_key('space', lambda x: print("siren"))
 keyboard.on_press_key('a', lambda x: print("left"))
 keyboard.on_press_key('s', lambda x: print("straight"))
 keyboard.on_press_key('d', lambda x: print("right"))

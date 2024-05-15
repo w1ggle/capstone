@@ -39,5 +39,5 @@ def finish():
     straight()
     return True
 
-def toggleSiren():
-    send_command(3, 1)
+#def toggleSiren():
+#    send_command(3, 1)
